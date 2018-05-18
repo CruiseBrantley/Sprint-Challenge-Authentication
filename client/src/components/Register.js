@@ -13,6 +13,7 @@ class Register extends React.Component {
   render() {
     return (
       <div>
+        <h1>Register</h1>
         <form onSubmit={this.submitHandler}>
           <div>
             <label htmlFor="username" />
@@ -39,7 +40,7 @@ class Register extends React.Component {
           </div>
         </form>
         <Link to="/signin">
-          <button>Sign In</button>
+          <h3>Sign In</h3>
         </Link>
       </div>
     );

@@ -5,7 +5,7 @@ import { Route, Redirect, withRouter } from "react-router-dom";
 import "./App.css";
 import Signin from "./components/Signin";
 import Register from "./components/Register";
-import Users from "./components/Users";
+import Jokes from "./components/Jokes";
 
 class App extends Component {
   render() {
@@ -15,7 +15,7 @@ class App extends Component {
           exact
           path="/"
           render={() =>
-            !localStorage.getItem("token") ? <Redirect to="/register" /> : null
+            !localStorage.getItem("token") ? <Redirect to="/signin" /> : null
           }
         />
         {localStorage.getItem("token") && (
@@ -23,7 +23,7 @@ class App extends Component {
         )}
         <Route path="/register" component={Register} />
         <Route path="/signin" component={Signin} />
-        <Route path="/jokes" component={Users} />
+        <Route path="/jokes" component={Jokes} />
       </div>
     );
   }

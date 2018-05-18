@@ -1,21 +1,20 @@
-// /src/users/Users.js
-
 import React from "react";
 import axios from "axios";
 
-class Users extends React.Component {
+class Jokes extends React.Component {
   state = {
-    users: []
+    jokes: []
   };
 
   render() {
     return (
       <div>
-        {this.state.users.map(user => (
-          <div key={user._id}>
-            <b>{user.setup}</b>
+        <hr />
+        {this.state.jokes.map(joke => (
+          <div key={joke._id}>
+            <b>{joke.setup}</b>
             <br />
-            {user.punchline}
+            {joke.punchline}
             <hr />
           </div>
         ))}
@@ -35,7 +34,7 @@ class Users extends React.Component {
     axios
       .get("http://localhost:5000/api/jokes", requestOptions)
       .then(response => {
-        this.setState({ users: response.data });
+        this.setState({ jokes: response.data });
       })
       .catch(err => {
         this.props.history.push("/signin");
@@ -43,4 +42,4 @@ class Users extends React.Component {
   };
 }
 
-export default Users;
+export default Jokes;

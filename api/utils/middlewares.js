@@ -6,7 +6,7 @@ const { mysecret } = require("../../config");
 const authenticate = (req, res, next) => {
   // You won't need to change anything in this file here.
   let token = req.get("Authorization");
-  token = token.replace("Bearer ", "");
+  if (token != undefined) token = token.replace("Bearer ", "");
   if (token) {
     jwt.verify(token, mysecret, (err, decoded) => {
       if (err) return res.status(422).json(err);

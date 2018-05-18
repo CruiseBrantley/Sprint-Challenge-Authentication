@@ -2,6 +2,7 @@
 
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class Signin extends React.Component {
   state = {
@@ -13,6 +14,7 @@ class Signin extends React.Component {
   render() {
     return (
       <div>
+        <h1>Sign In</h1>
         <form onSubmit={this.submitHandler}>
           <div>
             <label htmlFor="username" />
@@ -38,9 +40,10 @@ class Signin extends React.Component {
             <button>Sign in</button>
           </div>
         </form>
-        {this.state.invalidCredentials ? (
-          <span>Invalid Credentials</span>
-        ) : null}
+        <Link to="/register">
+          <h3>Register</h3>
+        </Link>
+        {this.state.invalidCredentials ? <h3>Invalid Credentials</h3> : null}
       </div>
     );
   }
@@ -59,12 +62,11 @@ class Signin extends React.Component {
       .then(response => {
         localStorage.setItem("token", response.data.token);
 
-        this.setState({ invalidCredentials: false });
         this.props.history.push("/jokes");
       })
       .catch(err => {
         localStorage.removeItem("token");
-        this.setState({ invalidCredentials: true });
+        this.setState({ invalidCredentials: true, username: "", password: "" });
       });
   };
 }
