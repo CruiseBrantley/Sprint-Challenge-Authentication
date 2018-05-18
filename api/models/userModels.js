@@ -30,9 +30,9 @@ UserSchema.pre("save", function(next) {
 });
 
 UserSchema.methods.checkPassword = function(plainTextPW, callBack) {
-  bcrypt.compare(passwordGuess, this.password, (err, isMatch) => {
-    if (err) return cb(err);
-    cb(null, isMatch);
+  bcrypt.compare(plainTextPW, this.password, (err, isMatch) => {
+    if (err) return callBack(err);
+    callBack(null, isMatch);
   });
   // https://github.com/kelektiv/node.bcrypt.js#usage
   // Fill this method in with the Proper password comparing, bcrypt.compare()
